@@ -16,7 +16,8 @@ class RemoveFrameHeader
     public function handle(Request $request, Closure $next): Response
     {
         $response = $next($request);
-        $response->headers->remove('X-Frame-Options');
+        $response->headers->remove("X-Frame-Options");
+        $response->headers->set("Content-Security-Policy", "frame-ancestors 'self' https://aa123bb.gamer.gd");
         return $response;
     }
 }
